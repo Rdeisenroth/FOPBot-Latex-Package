@@ -1,0 +1,95 @@
+\documentclass[
+    12pt,
+    a4paper,
+    ngerman,
+    leqno
+    ]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usetikzlibrary{patterns, shapes, intersections, arrows, math, decorations,decorations.pathreplacing, decorations.pathmorphing, positioning, calc, automata, chains,matrix, arrows.meta, , shadows.blur, shapes.symbols, backgrounds}
+\usepackage{../FOPBot}
+\begin{document}
+\section*{FOPBot Examples}
+Simple Example:
+\begin{FOPBotWorld}{3}{3}
+    % Walls (Since Noce anchors are for some reason not as exact we use coordinates)
+    \draw[very thick] (.5,-.5) -- (.5,1.5);
+    \draw[very thick] (1.5,.5) -- (1.5,2.5);
+    % Coins
+    \putcoin{1}{2}{2}
+    \putcoin{1}{0}{2}
+    \putcoin{1}{0}{2}
+    % Bots
+    \path (1,1) pic {Trianglebot};
+    \path (0,2) pic[rotate=270] {Trianglebot=red};
+    \path (2,2) pic[rotate=180] {Trianglebot=green};
+    \path (2,0) pic[rotate=90] {Trianglebot=yellow};
+    \path (0,0) pic[] {Trianglebot=violet};
+\end{FOPBotWorld}
+\vspace{1cm}\\
+Example using Loops and a figure:
+\begin{figure}[h] 
+    \centering
+    \begin{FOPBotWorld}{11}{5}
+        \foreach \x/\y in {
+                {0/0},
+                {0/1},
+                {0/2},
+                {0/3},
+                {0/4},
+                {1/4},
+                {2/4},
+                {1/2},
+                {2/2},
+                {4/0},
+                {4/1},
+                {4/2},
+                {4/3},
+                {4/4},
+                {5/4},
+                {6/4},
+                {6/3},
+                {6/2},
+                {6/1},
+                {6/0},
+                {5/0},
+                {8/0},
+                {8/1},
+                {8/2},
+                {8/3},
+                {8/4},
+                {9/4},
+                {10/4},
+                {10/3},
+                {10/2},
+                {9/2},
+            }{
+                \putcoin{\x}{\y}{1}
+            }
+        \path (5,2) pic {Trianglebot};
+    \end{FOPBotWorld}
+    \caption{Gewünschtes Ergebnis}
+\end{figure}
+\vspace{1cm}\\
+Example using the defined lables: (\texttt{TODO: FIX LAYERS})
+\begin{FOPBotWorld}{3}{3}
+    % Walls (Since Noce anchors are for some reason not as exact we use coordinates)
+    \draw[very thick] (.5,-.5) -- (.5,1.5);
+    \draw[very thick] (1.5,.5) -- (1.5,2.5);
+    % Coins
+    \putcoin{1}{2}{2}
+    \putcoin{1}{0}{2}
+    \putcoin{1}{0}{2}
+    % Bots
+    \path (1,1) pic {Trianglebot};
+    \path (0,2) pic[rotate=270] {Trianglebot=red};
+    \path (2,2) pic[rotate=180] {Trianglebot=green};
+    \path (2,0) pic[rotate=90] {Trianglebot=yellow};
+    \path (0,0) pic[] {Trianglebot=violet};
+    % Using the defined Lables
+    \draw[ultra thick, {Latex}-, orange] (n-1-1.center) -- ++ (2cm,0) node[right, font=\sffamily]{center};
+\end{FOPBotWorld}
+\end{document}

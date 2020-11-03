@@ -1,0 +1,82 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{FOPBot}[2014/08/21 FOP-Bot LaTeX Package]
+\usepackage{tikz}
+\usetikzlibrary{patterns, shapes, intersections, arrows, math, decorations,decorations.pathreplacing, decorations.pathmorphing, positioning, calc, automata, chains,matrix, arrows.meta, , shadows.blur, shapes.symbols, backgrounds}
+
+% Definition der FOPBotWorld-Umgebung
+
+\newenvironment{FOPBotWorld}[2]{
+    \def\tilesize{1cm}
+    \definecolor{FBlightgray}{RGB}{192, 192, 192}
+    \definecolor{FBdarkgray}{RGB}{128, 128, 128}
+    \definecolor{botblue}{RGB}{41, 171, 226}
+    \definecolor{botdarkblue}{RGB}{1, 0, 66}
+    %Makros
+    \newcommand*\setcoin[3]{\expandafter\xdef\csname C-##1-##2-\endcsname{##3}}
+    \newcommand*\getcoin[2]{\csname C-##1-##2-\endcsname}
+    \newcommand{\putcoin}[3]{
+        \expandafter \ifx \csname C-##1-##2-\endcsname \relax
+            \expandafter\xdef\csname C-##1-##2-\endcsname{##3}
+        \else
+            \def\temp{\the\numexpr \getcoin{##1}{##2} + ##3\relax}
+            \expandafter\xdef\csname C-##1-##2-\endcsname{\temp}
+        \fi
+    }
+    \def\worldwidth{#1}
+    \def\worldheight{#2}
+    
+    % Icons
+    \tikzset{
+        pics/Coin/.style={code={
+                        \path[draw=none, semithick, fill=red] (0,0) circle (.4cm) node[font=\scriptsize\sffamily\bfseries]{##1};
+                    }},
+        pics/Coin/.default=1,
+        pics/Trianglebot/.style={code={
+            %\draw (-.5,-.5) rectangle (.5,.5);
+            %Triangle 
+            \draw[draw=botdarkblue,fill=##1]
+            (-.38,-.2) coordinate (c1) --
+            (.38,-.2) coordinate (c2) --
+            (0, .45) coordinate (c3) -- cycle;
+            \draw[fill=white,draw=botdarkblue] (0,.03) circle (1.38mm) coordinate (cc);
+            \draw[fill=botdarkblue,draw=botdarkblue] (cc) circle (1.28pt);
+            %Legs
+            \draw[fill=white,draw=botdarkblue] (-.195,-.2) rectangle (-.06,-.29);
+            \draw[fill=white,draw=botdarkblue] (-.195,-.29) rectangle (-.06,-.4);
+            \draw[fill=white,draw=botdarkblue] (.185,-.2) rectangle (.05,-.29);
+            \draw[fill=white,draw=botdarkblue] (.185,-.29) rectangle (.05,-.4);
+            %Feet
+            \draw[fill=##1,draw=botdarkblue](-.04, -.445) arc(0:180:.09) --cycle;
+            \draw[fill=##1,draw=botdarkblue](.21, -.445) arc(0:180:.09) --cycle;
+        }},
+        pics/Trianglebot/.default={botblue},
+    }
+    % Begin Tikz Picture
+    \begin{tikzpicture}%[scale=#3, every node/.style={scale=#3}] %Scaling Planned for future release
+        % Initialize world
+        \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
+                \foreach \y in {0,...,\the\numexpr\worldheight - 1\relax}{
+                        \setcoin{\x}{\y}{0} % Reset Coins from previous worlds
+                        \node[draw=FBdarkgray,fill=FBlightgray,minimum width=\tilesize,minimum height=\tilesize, inner sep=0pt,anchor=center,very thick] (n-\x-\y) at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){};
+                    }
+            }
+        }
+        {%After
+        % Finish World
+        \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
+                \foreach \y in {0,...,\the\numexpr\worldheight - 1\relax}{
+                        %\def\temp{\getcoin{\x}{\y}}
+                        \expandafter \ifx \csname C-\x-\y-\endcsname \relax
+                            % Do not draw Coin
+                        \else
+                            \ifnum \csname C-\x-\y-\endcsname > 0
+                                \path (\x,\y) pic {Coin={\csname C-\x-\y-\endcsname}};
+                            \fi
+                        \fi
+
+                    }
+            }
+        %World Border
+        \draw[very thick] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+    \end{tikzpicture}
+}
