@@ -187,4 +187,22 @@ Layering example:
         \draw[draw=none, drop shadow] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
     \end{pgfonlayer}
 \end{FOPBotWorld}
+
+\clearpage
+Chess Example: (\texttt{TODO: ADD CHESS FIGURES})
+\begin{FOPBotWorld}{8}{8}
+    % Schachmuster
+    \begin{pgfonlayer}{board}
+        \draw[fill=black,draw=none] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+        \foreach \x in {0, 2,...,\the\numexpr\worldwidth - 1\relax}{
+            \foreach \y [evaluate= \y as \xoffset using {Mod(\y,2) *1cm}] in {0,...,\the\numexpr\worldheight - 1\relax}{
+                    \node[fill=white, draw=none, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (0cm + \tilesize * \x 
+                    +\xoffset,
+                    0cm + \tilesize * \y ){};
+                }
+        }
+    \end{pgfonlayer}
+    \path (2,0) pic[rotate=90] {Trianglebot=yellow};
+    \path (0,0) pic[] {Trianglebot=violet};
+\end{FOPBotWorld}
 \end{document}

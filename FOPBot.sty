@@ -7,18 +7,20 @@
 \usepackage{tikz}
 \usetikzlibrary{patterns, shapes, intersections, arrows, math, decorations,decorations.pathreplacing, decorations.pathmorphing, positioning, calc, automata, chains,matrix, arrows.meta, , shadows.blur, shapes.symbols, backgrounds}
 
+\definecolor{FBlightgray}{RGB}{192, 192, 192}
+\definecolor{FBdarkgray}{RGB}{128, 128, 128}
+\definecolor{botblue}{RGB}{41, 171, 226}
+\definecolor{botdarkblue}{RGB}{1, 0, 66}
+\definecolor{tetrisorangeborder}{RGB}{255, 179, 128}
+\definecolor{tetrislightorange}{RGB}{255, 143, 64}
+\definecolor{tetrisdarkorange}{RGB}{255, 103, 1}
+\definecolor{tetrisgray}{RGB}{102, 102, 102}
+
 % Definition der FOPBotWorld-Umgebung
 
 \newenvironment{FOPBotWorld}[2]{
     \def\tilesize{1cm}
-    \definecolor{FBlightgray}{RGB}{192, 192, 192}
-    \definecolor{FBdarkgray}{RGB}{128, 128, 128}
-    \definecolor{botblue}{RGB}{41, 171, 226}
-    \definecolor{botdarkblue}{RGB}{1, 0, 66}
-    \definecolor{tetrisorangeborder}{RGB}{255, 179, 128}
-    \definecolor{tetrislightorange}{RGB}{255, 143, 64}
-    \definecolor{tetrisdarkorange}{RGB}{255, 103, 1}
-    \definecolor{tetrisgray}{RGB}{102, 102, 102}
+    
     %Makros
     \newcommand*\setcoin[3]{\expandafter\xdef\csname C-##1-##2-\endcsname{##3}}
     \newcommand*\getcoin[2]{\csname C-##1-##2-\endcsname}

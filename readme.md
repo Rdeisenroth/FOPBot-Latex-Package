@@ -20,6 +20,7 @@ To place Coins use the command:
 Robots are defined as Pics, and have an option for color. See the example for more details.
 ## Planned Features
 - Scaling
+- Chess Figures
 - Better Wall Creation
 - More Settings
 ## Author
