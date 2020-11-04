@@ -182,5 +182,9 @@ Layering example:
                 }
         }
     \end{pgfonlayer}
+    %Shadows
+    \begin{pgfonlayer}{background}
+        \draw[draw=none, drop shadow] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+    \end{pgfonlayer}
 \end{FOPBotWorld}
 \end{document}
