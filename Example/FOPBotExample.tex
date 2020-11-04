@@ -9,6 +9,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{tikz}
 \usepackage{xifthen}
+\usepackage{lmodern}
 \usetikzlibrary{patterns, shapes, intersections, arrows, math, decorations,decorations.pathreplacing, decorations.pathmorphing, positioning, calc, automata, chains,matrix, arrows.meta, , shadows.blur, shapes.symbols, backgrounds}
 \usepackage{../FOPBot}
 \begin{document}
@@ -74,7 +75,7 @@ Example using Loops and a figure:
     \caption{Gewünschtes Ergebnis}
 \end{figure}
 \vspace{1cm}\\
-Example using the defined lables: (\texttt{TODO: FIX LAYERS})
+Example using the defined lables:
 \begin{FOPBotWorld}{3}{3}
     % Walls (Since Noce anchors are for some reason not as exact we use coordinates)
     \draw[very thick] (.5,-.5) -- (.5,1.5);
@@ -118,5 +119,19 @@ Tetris Example:
     \path (5,1) pic[rotate=90] {Tetrisbot=purple};
     \path (5,2) pic[rotate=90] {Tetrisbot=purple};
     \path (5,3) pic[rotate=90] {Tetrisbot=purple};
+\end{FOPBotWorld}\\
+Tetris Example 2 (With coordinates):
+\begin{FOPBotWorld}{3}{2}
+
+    \path (0,1) pic {Tetrisbot=red};
+    \path (1,1) pic {Tetrisbot=red};
+    \path (1,0) pic {Tetrisbot=red};
+    \path (2,0) pic {Tetrisbot=red};
+    % Koordinaten
+    \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
+                \foreach \y in {0,...,\the\numexpr\worldheight - 1\relax}{
+                        \node[fill=white, fill opacity=.6,text opacity=1,ellipse, inner sep = 0pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
+                    }
+            }
 \end{FOPBotWorld}
 \end{document}
