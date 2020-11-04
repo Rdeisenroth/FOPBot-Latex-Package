@@ -133,5 +133,54 @@ Tetris Example 2 (With coordinates):
                         \node[fill=white, fill opacity=.6,text opacity=1,ellipse, inner sep = 0pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
                     }
             }
+\end{FOPBotWorld}\\
+Layering example:
+\begin{FOPBotWorld}{11}{5}
+    \foreach \x/\y in {
+            {0/0},
+            {0/1},
+            {0/2},
+            {0/3},
+            {0/4},
+            {1/4},
+            {2/4},
+            {1/2},
+            {2/2},
+            {4/0},
+            {4/1},
+            {4/2},
+            {4/3},
+            {4/4},
+            {5/4},
+            {6/4},
+            {6/3},
+            {6/2},
+            {6/1},
+            {6/0},
+            {5/0},
+            {8/0},
+            {8/1},
+            {8/2},
+            {8/3},
+            {8/4},
+            {9/4},
+            {10/4},
+            {10/3},
+            {10/2},
+            {9/2},
+        }{
+            \putcoin{\x}{\y}{1}
+        }
+    \path (5,2) pic {Trianglebot};
+    \draw[violet,{Latex}-, ultra thick] (n-5-2) --++(.5,3) node[above]{\sffamily Center};
+    \begin{pgfonlayer}{board}
+        \draw[left color= yellow, right color = green,opacity=.3,draw=none] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+        % Koordinaten
+        \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
+            \foreach \y in {0,...,\the\numexpr\worldheight - 1\relax}{
+                    \node[fill=white, fill opacity=.6,text opacity=1,star, inner sep = -2.5pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
+                }
+        }
+    \end{pgfonlayer}
 \end{FOPBotWorld}
 \end{document}
