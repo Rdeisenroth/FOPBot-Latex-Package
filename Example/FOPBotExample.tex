@@ -92,4 +92,31 @@ Example using the defined lables: (\texttt{TODO: FIX LAYERS})
     % Using the defined Lables
     \draw[ultra thick, {Latex}-, orange] (n-1-1.center) -- ++ (2cm,0) node[right, font=\sffamily]{center};
 \end{FOPBotWorld}
+\clearpage
+Tetris Example:
+\begin{FOPBotWorld}{6}{8}
+    %\node[] at (0,0) {\includegraphics[height=.85cm]{orange.png}};
+    \path (0,0) pic[rotate=90] {Tetrisbot=yellow};
+    \path (0,1) pic[rotate=90] {Tetrisbot=yellow};
+    \path (0,2) pic[rotate=90] {Tetrisbot=yellow};
+    \path (1,2) pic[rotate=180] {Tetrisbot=green};
+    \path (2,2) pic[rotate=180] {Tetrisbot=green};
+    \path (2,3) pic[rotate=180] {Tetrisbot=green};
+    \path (3,3) pic[rotate=180] {Tetrisbot=green};
+    \path (3,4) pic {Tetrisbot=red};
+    \path (3,5) pic {Tetrisbot=red};
+    \path (2,5) pic {Tetrisbot=red};
+    \path (4,4) pic {Tetrisbot=red};
+    \path (1,0) pic[rotate=180] {Tetrisbot=blue};
+    \path (2,0) pic {Tetrisbot=aqua};
+    \path (3,0) pic {Tetrisbot=aqua};
+    \path (2,1) pic {Tetrisbot=aqua};
+    \path (3,1) pic {Tetrisbot=aqua};
+    \path (4,0) pic[rotate=270] {Tetrisbot};
+    \path (4,1) pic[rotate=270] {Tetrisbot};
+    \path (4,2) pic[rotate=90] {Tetrisbot=purple};
+    \path (5,1) pic[rotate=90] {Tetrisbot=purple};
+    \path (5,2) pic[rotate=90] {Tetrisbot=purple};
+    \path (5,3) pic[rotate=90] {Tetrisbot=purple};
+\end{FOPBotWorld}
 \end{document}

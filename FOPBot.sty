@@ -15,6 +15,10 @@
     \definecolor{FBdarkgray}{RGB}{128, 128, 128}
     \definecolor{botblue}{RGB}{41, 171, 226}
     \definecolor{botdarkblue}{RGB}{1, 0, 66}
+    \definecolor{tetrisorangeborder}{RGB}{255, 179, 128}
+    \definecolor{tetrislightorange}{RGB}{255, 143, 64}
+    \definecolor{tetrisdarkorange}{RGB}{255, 103, 1}
+    \definecolor{tetrisgray}{RGB}{102, 102, 102}
     %Makros
     \newcommand*\setcoin[3]{\expandafter\xdef\csname C-##1-##2-\endcsname{##3}}
     \newcommand*\getcoin[2]{\csname C-##1-##2-\endcsname}
@@ -54,6 +58,64 @@
             \draw[fill=##1,draw=botdarkblue](.21, -.445) arc(0:180:.09) --cycle;
         }},
         pics/Trianglebot/.default={botblue},
+        pics/Tetrisbot/.style={code={
+            \edef\temp{##1}
+            %blue
+            \edef\tempp{blue}
+            \ifx \temp \tempp
+                \definecolor{tetrisborder}{RGB}{128, 179, 255}
+                \definecolor{tetrisupper}{RGB}{65, 141, 255}
+                \definecolor{tetrislower}{RGB}{0, 102, 255}
+            \else
+                % aqua
+                \edef\tempp{aqua}
+                \ifx \temp \tempp
+                    \definecolor{tetrisborder}{RGB}{128, 230, 255}
+                    \definecolor{tetrisupper}{RGB}{65, 217, 255}
+                    \definecolor{tetrislower}{RGB}{0, 204, 255}
+                \else
+                    % green
+                    \edef\tempp{green}
+                    \ifx \temp \tempp
+                        \definecolor{tetrisborder}{RGB}{128, 234, 128}
+                        \definecolor{tetrisupper}{RGB}{65, 223, 65}
+                        \definecolor{tetrislower}{RGB}{0, 212, 0}
+                    \else
+                        % purple
+                        \edef\tempp{purple}
+                        \ifx \temp \tempp
+                            \definecolor{tetrisborder}{RGB}{184, 155, 228}
+                            \definecolor{tetrisupper}{RGB}{149, 106, 214}
+                            \definecolor{tetrislower}{RGB}{113, 55, 200}
+                        \else
+                            % red
+                            \edef\tempp{red}
+                            \ifx \temp \tempp
+                                \definecolor{tetrisborder}{RGB}{255, 128, 128}
+                                \definecolor{tetrisupper}{RGB}{255, 64, 64}
+                                \definecolor{tetrislower}{RGB}{255, 0, 0}
+                            \else
+                                % yellow
+                                \edef\tempp{yellow}
+                                \ifx \temp \tempp
+                                    \definecolor{tetrisborder}{RGB}{255, 230, 128}
+                                    \definecolor{tetrisupper}{RGB}{255, 217, 64}
+                                    \definecolor{tetrislower}{RGB}{255, 204, 0}
+                                \else
+                                \definecolor{tetrisborder}{RGB}{255, 179, 128}
+                                \definecolor{tetrisupper}{RGB}{255, 143, 64}
+                                \definecolor{tetrislower}{RGB}{255, 103, 1}
+                                \fi
+                            \fi
+                        \fi
+                    \fi
+                \fi
+            \fi
+            \draw[draw=tetrisborder, ultra thick, bottom color=tetrislower, top color = tetrisupper] ([xshift=.8pt,yshift=.8pt]-.425,-.425) rectangle ([xshift=-.8pt,yshift=-.8pt].425,.425);
+            \draw[draw=tetrisborder, thick,fill=white] (0,.1) circle (2mm);
+            \draw[draw=none,fill=tetrisgray] (0,.185) circle (.55mm);
+        }},
+        pics/Tetrisbot/.default={orange},
     }
     % Begin Tikz Picture
     \begin{tikzpicture}%[scale=#3, every node/.style={scale=#3}] %Scaling Planned for future release
