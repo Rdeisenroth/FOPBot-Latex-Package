@@ -3,7 +3,7 @@
     a4paper,
     ngerman,
     leqno
-    ]{article}
+]{article}
 
 % Packages
 \usepackage[T1]{fontenc}
@@ -13,30 +13,31 @@
 
 \begin{document}
 
-% Begin of Example
-\section*{FOPBot Examples}
-Simple Example: \bigskip
-\begin{FOPBotWorld}{3}{3}
-    % Walls (Since Node anchors are for some reason not as exact we use coordinates)
-    \draw[very thick] (.5,-.5) -- (.5,1.5);
-    \draw[very thick] (1.5,.5) -- (1.5,2.5);
-    % Coins
-    \putcoin{1}{2}{2}
-    \putcoin{1}{0}{2}
-    \putcoin{1}{0}{2}
-    % Bots
-    \path (1,1) pic {Trianglebot};
-    \path (0,2) pic[rotate=270] {Trianglebot=red};
-    \path (2,2) pic[rotate=180] {Trianglebot=green};
-    \path (2,0) pic[rotate=90] {Trianglebot=yellow};
-    \path (0,0) pic[] {Trianglebot=violet};
-\end{FOPBotWorld}
-\bigskip\par
-Example using Loops and a figure:
-\begin{figure}[h]
-    \centering
-    \begin{FOPBotWorld}{11}{5}
-        \foreach \x/\y in {
+    % Begin of Example
+    \section*{FOPBot Examples}
+    Simple Example:\par\bigskip
+    \begin{FOPBotWorld}{3}{3}
+        % Walls (Since Node anchors are for some reason not as exact we use coordinates)
+        \draw[very thick] (.5,-.5) -- (.5,1.5);
+        \draw[very thick] (1.5,.5) -- (1.5,2.5);
+        % Coins
+        \putcoin{1}{2}{2}
+        \putcoin{1}{0}{2}
+        \putcoin{1}{0}{2}
+        % Bots
+        \path (1,1) pic {Trianglebot};
+        \path (0,2) pic[rotate=270] {Trianglebot=red};
+        \path (2,2) pic[rotate=180] {Trianglebot=green};
+        \path (2,0) pic[rotate=90] {Trianglebot=yellow};
+        \path (0,0) pic[] {Trianglebot=violet};
+    \end{FOPBotWorld}
+    \bigskip\par
+
+    Example using Loops and a figure:
+    \begin{figure}[h]
+        \centering
+        \begin{FOPBotWorld}{11}{5}
+            \foreach \x/\y in {
                 {0/0},
                 {0/1},
                 {0/2},
@@ -71,73 +72,76 @@ Example using Loops and a figure:
             }{
                 \putcoin{\x}{\y}{1}
             }
-        \path (5,2) pic {Trianglebot};
+            \path (5,2) pic {Trianglebot};
+        \end{FOPBotWorld}
+        \caption{Gewünschtes Ergebnis}
+    \end{figure}
+    \vspace{1cm}\\
+    Example using the defined lables: \par\bigskip
+    \begin{FOPBotWorld}{3}{3}
+        % Walls (Since Node anchors are for some reason not as exact we use coordinates)
+        \draw[very thick] (.5,-.5) -- (.5,1.5);
+        \draw[very thick] (1.5,.5) -- (1.5,2.5);
+        % Coins
+        \putcoin{1}{2}{2}
+        \putcoin{1}{0}{2}
+        \putcoin{1}{0}{2}
+        % Bots
+        \path (1,1) pic {Trianglebot};
+        \path (0,2) pic[rotate=270] {Trianglebot=red};
+        \path (2,2) pic[rotate=180] {Trianglebot=green};
+        \path (2,0) pic[rotate=90] {Trianglebot=yellow};
+        \path (0,0) pic[] {Trianglebot=violet};
+        % Using the defined Lables
+        \draw[ultra thick, {Latex}-, orange] (n-1-1.center) -- ++ (2cm,0) node[right, font=\sffamily]{center};
     \end{FOPBotWorld}
-    \caption{Gewünschtes Ergebnis}
-\end{figure}
-\vspace{1cm}\\
-Example using the defined lables: \bigskip
-\begin{FOPBotWorld}{3}{3}
-    % Walls (Since Node anchors are for some reason not as exact we use coordinates)
-    \draw[very thick] (.5,-.5) -- (.5,1.5);
-    \draw[very thick] (1.5,.5) -- (1.5,2.5);
-    % Coins
-    \putcoin{1}{2}{2}
-    \putcoin{1}{0}{2}
-    \putcoin{1}{0}{2}
-    % Bots
-    \path (1,1) pic {Trianglebot};
-    \path (0,2) pic[rotate=270] {Trianglebot=red};
-    \path (2,2) pic[rotate=180] {Trianglebot=green};
-    \path (2,0) pic[rotate=90] {Trianglebot=yellow};
-    \path (0,0) pic[] {Trianglebot=violet};
-    % Using the defined Lables
-    \draw[ultra thick, {Latex}-, orange] (n-1-1.center) -- ++ (2cm,0) node[right, font=\sffamily]{center};
-\end{FOPBotWorld}
-\clearpage
-Tetris Example:\bigskip
-\begin{FOPBotWorld}{6}{8}
-    %\node[] at (0,0) {\includegraphics[height=.85cm]{orange.png}};
-    \path (0,0) pic[rotate=90] {Tetrisbot=yellow};
-    \path (0,1) pic[rotate=90] {Tetrisbot=yellow};
-    \path (0,2) pic[rotate=90] {Tetrisbot=yellow};
-    \path (1,2) pic[rotate=180] {Tetrisbot=green};
-    \path (2,2) pic[rotate=180] {Tetrisbot=green};
-    \path (2,3) pic[rotate=180] {Tetrisbot=green};
-    \path (3,3) pic[rotate=180] {Tetrisbot=green};
-    \path (3,4) pic {Tetrisbot=red};
-    \path (3,5) pic {Tetrisbot=red};
-    \path (2,5) pic {Tetrisbot=red};
-    \path (4,4) pic {Tetrisbot=red};
-    \path (1,0) pic[rotate=180] {Tetrisbot=blue};
-    \path (2,0) pic {Tetrisbot=aqua};
-    \path (3,0) pic {Tetrisbot=aqua};
-    \path (2,1) pic {Tetrisbot=aqua};
-    \path (3,1) pic {Tetrisbot=aqua};
-    \path (4,0) pic[rotate=270] {Tetrisbot};
-    \path (4,1) pic[rotate=270] {Tetrisbot};
-    \path (4,2) pic[rotate=90] {Tetrisbot=purple};
-    \path (5,1) pic[rotate=90] {Tetrisbot=purple};
-    \path (5,2) pic[rotate=90] {Tetrisbot=purple};
-    \path (5,3) pic[rotate=90] {Tetrisbot=purple};
-\end{FOPBotWorld}\bigskip\par
-Tetris Example 2 (With coordinates):\bigskip
-\begin{FOPBotWorld}{3}{2}
+    \clearpage
+    Tetris Example:\par\bigskip
+    \begin{FOPBotWorld}{6}{8}
+        %\node[] at (0,0) {\includegraphics[height=.85cm]{orange.png}};
+        \path (0,0) pic[rotate=90] {Tetrisbot=yellow};
+        \path (0,1) pic[rotate=90] {Tetrisbot=yellow};
+        \path (0,2) pic[rotate=90] {Tetrisbot=yellow};
+        \path (1,2) pic[rotate=180] {Tetrisbot=green};
+        \path (2,2) pic[rotate=180] {Tetrisbot=green};
+        \path (2,3) pic[rotate=180] {Tetrisbot=green};
+        \path (3,3) pic[rotate=180] {Tetrisbot=green};
+        \path (3,4) pic {Tetrisbot=red};
+        \path (3,5) pic {Tetrisbot=red};
+        \path (2,5) pic {Tetrisbot=red};
+        \path (4,4) pic {Tetrisbot=red};
+        \path (1,0) pic[rotate=180] {Tetrisbot=blue};
+        \path (2,0) pic {Tetrisbot=aqua};
+        \path (3,0) pic {Tetrisbot=aqua};
+        \path (2,1) pic {Tetrisbot=aqua};
+        \path (3,1) pic {Tetrisbot=aqua};
+        \path (4,0) pic[rotate=270] {Tetrisbot};
+        \path (4,1) pic[rotate=270] {Tetrisbot};
+        \path (4,2) pic[rotate=90] {Tetrisbot=purple};
+        \path (5,1) pic[rotate=90] {Tetrisbot=purple};
+        \path (5,2) pic[rotate=90] {Tetrisbot=purple};
+        \path (5,3) pic[rotate=90] {Tetrisbot=purple};
+    \end{FOPBotWorld}\bigskip\par
+    Tetris Example 2 (With coordinates):
 
-    \path (0,1) pic {Tetrisbot=red};
-    \path (1,1) pic {Tetrisbot=red};
-    \path (1,0) pic {Tetrisbot=red};
-    \path (2,0) pic {Tetrisbot=red};
-    % Koordinaten
-    \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
+    \begin{FOPBotWorld}{3}{2}
+
+        \path (0,1) pic {Tetrisbot=red};
+        \path (1,1) pic {Tetrisbot=red};
+        \path (1,0) pic {Tetrisbot=red};
+        \path (2,0) pic {Tetrisbot=red};
+        % Koordinaten
+        \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
             \foreach \y in {0,...,\the\numexpr\worldheight - 1\relax}{
-                    \node[fill=white, fill opacity=.6,text opacity=1,ellipse, inner sep = 0pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
-                }
+                \node[fill=white, fill opacity=.6,text opacity=1,ellipse, inner sep = 0pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
+            }
         }
-\end{FOPBotWorld}\bigskip\par
-Layering example:
-\begin{FOPBotWorld}{11}{5}
-    \foreach \x/\y in {
+    \end{FOPBotWorld}
+
+    Layering example:
+
+    \begin{FOPBotWorld}{11}{5}
+        \foreach \x/\y in {
             {0/0},
             {0/1},
             {0/2},
@@ -172,44 +176,45 @@ Layering example:
         }{
             \putcoin{\x}{\y}{1}
         }
-    \path (5,2) pic {Trianglebot};
-    \draw[violet,{Latex}-, ultra thick] (n-5-2) --++(.5,3) node[above]{\sffamily Center};
-    \begin{pgfonlayer}{board}
-        \draw[left color= yellow, right color = green,opacity=.3,draw=none] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
-        % Koordinaten
-        \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
+        \path (5,2) pic {Trianglebot};
+        \draw[violet,{Latex}-, ultra thick] (n-5-2) --++(.5,3) node[above]{\sffamily Center};
+        \begin{pgfonlayer}{board}
+            \draw[left color= yellow, right color = green,opacity=.3,draw=none] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+            % Koordinaten
+            \foreach \x in {0,...,\the\numexpr\worldwidth - 1\relax}{
                 \foreach \y in {0,...,\the\numexpr\worldheight - 1\relax}{
-                        \node[fill=white, fill opacity=.6,text opacity=1,star, inner sep = -2.5pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
-                    }
+                    \node[fill=white, fill opacity=.6,text opacity=1,star, inner sep = -2.5pt] at (0cm + \tilesize * \x ,0cm + \tilesize * \y ){\tiny\ttfamily\fontseries{b}\selectfont(\x,\y)};
+                }
             }
-    \end{pgfonlayer}
-    %Shadows
-    \begin{pgfonlayer}{background}
-        \draw[draw=none, drop shadow] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
-    \end{pgfonlayer}
-\end{FOPBotWorld}
+        \end{pgfonlayer}
+        %Shadows
+        \begin{pgfonlayer}{background}
+            \draw[draw=none, drop shadow] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+        \end{pgfonlayer}
+    \end{FOPBotWorld}
 
-\clearpage
-Chess Example: (\texttt{TODO: ADD CHESS FIGURES})\bigskip
-\begin{FOPBotWorld}{8}{8}
-    % König, oder so
-    \path (4,4) pic[] {Trianglebot=black};
-    \path (3,3) pic[] {Trianglebot=gray};
-    % Schachmuster
-    \begin{pgfonlayer}{board}
-        \draw[fill=fopbot@chess_dark_gray,draw=none] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
-        \foreach \x in {0, 2,...,\the\numexpr\worldwidth - 1\relax}{
+    \clearpage
+    Chess Example: (\texttt{TODO: ADD CHESS FIGURES})
+
+    \begin{FOPBotWorld}{8}{8}
+        % König, oder so
+        \path (4,4) pic[] {Trianglebot=black};
+        \path (3,3) pic[] {Trianglebot=gray};
+        % Schachmuster
+        \begin{pgfonlayer}{board}
+            \draw[fill=fopbot@chess_dark_gray,draw=none] ([xshift=.6pt,yshift=.6pt]n-0-0.south west) rectangle ([xshift=-.6pt,yshift=-.6pt]n-\the\numexpr\worldwidth-1\relax-\the\numexpr\worldheight-1\relax.north east);
+            \foreach \x in {0, 2,...,\the\numexpr\worldwidth - 1\relax}{
                 \foreach \y [evaluate= \y as \xoffset using {Mod(\y,2) *1cm}] in {0,...,\the\numexpr\worldheight - 1\relax}{
-                        \node[fill=white, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (0cm + \tilesize * \x +\xoffset,0cm + \tilesize * \y ){};
-                    }
+                    \node[fill=white, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (0cm + \tilesize * \x +\xoffset,0cm + \tilesize * \y ){};
+                }
             }
-        \foreach \x in {3,4,5}{
+            \foreach \x in {3,4,5}{
                 \foreach \y in {3,4,5}{
-                        \node[fill=green, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (\x,\y){};
-                    }
+                    \node[fill=green, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (\x,\y){};
+                }
             }
-        \node[fill=yellow, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (4,4){};
-        \node[fill=red, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (3,3){};
-    \end{pgfonlayer}
-\end{FOPBotWorld}
+            \node[fill=yellow, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (4,4){};
+            \node[fill=red, draw=fopbot@dark_gray, very thick, text width=\tilesize,text height=\tilesize, inner sep = 0pt] at (3,3){};
+        \end{pgfonlayer}
+    \end{FOPBotWorld}
 \end{document}
