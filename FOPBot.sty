@@ -62,7 +62,7 @@
 
     \DeclareDocumentCommand{\putcoin}{mmm}{%
         \bool_if:nF {\tl_if_blank_p:e {##1} || \tl_if_blank_p:e {##2}}{
-            \int_gset:cn {fopbot@C-##1-##2-} {2}
+            \int_gset:cn {fopbot@C-##1-##2-} {##3}
         }
     }
 
